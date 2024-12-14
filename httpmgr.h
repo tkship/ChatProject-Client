@@ -25,6 +25,7 @@ private:
 
 signals:
     void SigModRegisterRecvReply(const QString& aRes, ReqId aId, ErrorCode aErr);
+    void SigModResetPwdRecvReply(const QString& aRes, ReqId aId, ErrorCode aErr);
 
 private:
     QNetworkAccessManager mNetMgr;

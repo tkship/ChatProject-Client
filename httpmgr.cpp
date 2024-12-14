@@ -45,8 +45,15 @@ void HttpMgr::SendPostRequest(QUrl aUrl, const QJsonObject &aJson, Module aMod, 
 
 void HttpMgr::AfterRecvReply(const QString& aRes, Module aMod, ReqId aId, ErrorCode aErr)
 {
-    if(aMod == Mod_Register)
+    switch (aMod)
     {
+    case Mod_Register:
         emit SigModRegisterRecvReply(aRes, aId, aErr);
+        break;
+    case Mod_ResetPwd:
+        emit SigModResetPwdRecvReply(aRes, aId, aErr);
+        break;
+    default:
+        break;
     }
 }

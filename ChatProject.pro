@@ -23,7 +23,8 @@ SOURCES += \
     mainwidget.cpp \
     registerwidget.cpp \
     resetpwdwidget.cpp \
-    timerbtn.cpp
+    timerbtn.cpp \
+    util.cpp
 
 HEADERS += \
     global.h \
@@ -33,7 +34,7 @@ HEADERS += \
     registerwidget.h \
     resetpwdwidget.h \
     timerbtn.h \
-    util.hpp
+    util.h
 
 FORMS += \
     loginwidget.ui \

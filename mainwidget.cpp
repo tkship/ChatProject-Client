@@ -5,13 +5,21 @@ MainWidget::MainWidget(QWidget *parent)
     : QMainWindow(parent)
     , mLoginWidget(new LoginWidget)
     , mRegisterWidget(new RegisterWidget)
+    , mResetPwdWidget(new ResetPwdWidget)
 {
     mLoginWidget->show();
 
+    // 登陆界面按钮点击事件
     connect(mLoginWidget, &LoginWidget::SigRegisterButtonClicked, this, &MainWidget::OnRegisterButtonClick);
-    connect(mRegisterWidget, &RegisterWidget::SigCancelButtonClicked, this, &MainWidget::OnCancelButtonClick);
-    connect(mRegisterWidget, &RegisterWidget::UserRegisterSuccess, this, &MainWidget::OnCancelButtonClick);
+    connect(mLoginWidget, &LoginWidget::SigResetPwdButtonClicked, this, &MainWidget::OnResetPwdButtonClick);
 
+    // 注册界面按钮点击事件
+    connect(mRegisterWidget, &RegisterWidget::SigCancelButtonClicked, this, &MainWidget::OnRegisterCancelButtonClick);
+    connect(mRegisterWidget, &RegisterWidget::UserRegisterSuccess, this, &MainWidget::OnRegisterCancelButtonClick);
+
+    // 重置密码界面按钮点击事件
+    connect(mResetPwdWidget, &ResetPwdWidget::SigCancelButtonClicked, this, &MainWidget::OnResetPwdWidgetCancelButtonClick);
+    connect(mResetPwdWidget, &ResetPwdWidget::ResetPwdSuccess, this, &MainWidget::OnResetPwdWidgetCancelButtonClick);
 }
 
 MainWidget::~MainWidget()
@@ -34,8 +42,20 @@ void MainWidget::OnRegisterButtonClick()
     mRegisterWidget->show();
 }
 
-void MainWidget::OnCancelButtonClick()
+void MainWidget::OnRegisterCancelButtonClick()
 {
     mRegisterWidget->hide();
+    mLoginWidget->show();
+}
+
+void MainWidget::OnResetPwdButtonClick()
+{
+    mLoginWidget->hide();
+    mResetPwdWidget->show();
+}
+
+void MainWidget::OnResetPwdWidgetCancelButtonClick()
+{
+    mResetPwdWidget->hide();
     mLoginWidget->show();
 }

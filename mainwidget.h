@@ -3,6 +3,7 @@
 
 #include "loginwidget.h"
 #include "registerwidget.h"
+#include "resetpwdwidget.h"
 
 #include <QMainWindow>
 
@@ -17,11 +18,14 @@ public:
 
 private slots:
     void OnRegisterButtonClick();
-    void OnCancelButtonClick();
+    void OnRegisterCancelButtonClick();
+    void OnResetPwdButtonClick();
+    void OnResetPwdWidgetCancelButtonClick();
 
 private:
     LoginWidget* mLoginWidget;
     RegisterWidget* mRegisterWidget;
+    ResetPwdWidget* mResetPwdWidget;
 
 
 };

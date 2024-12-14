@@ -9,6 +9,8 @@ LoginWidget::LoginWidget(QWidget *parent)
     setFixedSize(450, 600);
 
     connect(ui->RegisterButton, &QPushButton::clicked, this, &LoginWidget::SigRegisterButtonClicked);
+    connect(ui->ResetPwdButton, &QPushButton::clicked, this, &LoginWidget::SigResetPwdButtonClicked);
+
 }
 
 LoginWidget::~LoginWidget()

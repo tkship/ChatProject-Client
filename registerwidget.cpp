@@ -2,7 +2,7 @@
 #include "ui_registerwidget.h"
 
 #include "global.h"
-#include "util.hpp"
+#include "util.h"
 #include "httpmgr.h"
 
 #include <QRegularExpression>
@@ -20,8 +20,11 @@ RegisterWidget::RegisterWidget(QWidget *parent) :
 
     // 返回确认按钮
     connect(ui->CancelButton, &QPushButton::clicked, this, &RegisterWidget::SigCancelButtonClicked);
-    connect(ui->VerifyCodeButton, &QPushButton::clicked, this, &RegisterWidget::OnVerifyCodeButtonclick);
     connect(ui->ConfirmButton, &QPushButton::clicked, this, &RegisterWidget::OnConfirmButtonclick);
+
+    // 获取验证码
+    connect(ui->VerifyCodeButton, &QPushButton::clicked, this, &RegisterWidget::OnVerifyCodeButtonclick);
+
 
     // 收到服务器回复时的回调
     connect(&HttpMgr::GetInstance(), &HttpMgr::SigModRegisterRecvReply, this, &RegisterWidget::OnRecvReply);
@@ -35,16 +38,16 @@ RegisterWidget::RegisterWidget(QWidget *parent) :
 
     // 注册成功转换界面
     connect(ui->ConfirmButton2, &QPushButton::clicked, this, [this](){
-        emit UserRegisterSuccess();
         ClearPages();
+        emit UserRegisterSuccess();
     });
     connect(&mTimer, &QTimer::timeout, this, [this](){
         mCountDown--;
         if(mCountDown < 0)
         {
             mTimer.stop();
-            emit UserRegisterSuccess();
             ClearPages();
+            emit UserRegisterSuccess();
             return;
         }
 
@@ -102,7 +105,7 @@ void RegisterWidget::ProcessRegisterReply(const QJsonObject &aJson)
     {
         ShowTips("用户已存在，请重新注册");
     }
-    else if(errorCode == ErrorCode::MySQL_Error)
+    else if(errorCode == ErrorCode::MySQL_Error || errorCode == ErrorCode::Redis_KeyNotFound)
     {
         ShowTips("服务器暂时无法响应，请稍后重试");
     }

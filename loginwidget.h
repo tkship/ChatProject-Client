@@ -17,6 +17,7 @@ public:
 
 signals:
     void SigRegisterButtonClicked();
+    void SigResetPwdButtonClicked();
 
 private:
     Ui::Widget *ui;

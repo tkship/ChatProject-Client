@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/icon.jfif</file>
+        <file>res/chat.ico</file>
+    </qresource>
+</RCC>

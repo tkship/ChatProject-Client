@@ -63,6 +63,12 @@ void LoginWidget::ProcessLoginReply(const QJsonObject &aJson)
     if(aJson["error"].toInt() == ErrorCode::Success)
     {
         ShowTips("登陆成功");
+        QString host = aJson["host"].toString();
+        QString port = aJson["port"].toString();
+        QString token = aJson["token"].toString();
+        qDebug() << "[host]: " << host << "\n";
+        qDebug() << "[port]: " << port << "\n";
+        qDebug() << "[token]: " << token << "\n";
     }
     else if(aJson["error"].toInt() == ErrorCode::MySQL_UserNotMatch)
     {

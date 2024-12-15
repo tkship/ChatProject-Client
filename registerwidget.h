@@ -21,7 +21,7 @@ public:
 private:
     void ShowTips(const QString& aString);
     void ResetTips();
-    void SendVerifyCode();
+//    void SendVerifyCode();
     void ProcessVerifyCodeReply(const QJsonObject& aJson);
     void ProcessRegisterReply(const QJsonObject& aJson);
 

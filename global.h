@@ -4,6 +4,10 @@
 #include <QString>
 #include <QDir>
 
+#include <QRegularExpression>
+#include <QJsonObject>
+#include <QJsonDocument>
+
 extern QString GateServerPrefix;
 
 namespace CP
@@ -13,7 +17,8 @@ namespace CP
 enum Module
 {
     Mod_Register,
-    Mod_ResetPwd
+    Mod_ResetPwd,
+    Mod_Login
 };
 
 // 用来定位模块内的具体哪个发送请求
@@ -22,6 +27,7 @@ enum ReqId
     Req_VerifyCode,
     Req_Register,
     Req_ResetPwd,
+    Req_Login,
 };
 
 enum ErrorCode
@@ -33,6 +39,7 @@ enum ErrorCode
     MySQL_UserExist = 1004,
     MySQL_Error = 1005,
     MySQL_UserNotExist = 1006,
+    MySQL_UserNotMatch = 1007,
 
     NetFailure = 10001,
 

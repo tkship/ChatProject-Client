@@ -1,6 +1,5 @@
 #include "httpmgr.h"
 
-#include <QJsonDocument>
 #include <QNetworkReply>
 
 HttpMgr::HttpMgr(QObject *parent)
@@ -52,6 +51,9 @@ void HttpMgr::AfterRecvReply(const QString& aRes, Module aMod, ReqId aId, ErrorC
         break;
     case Mod_ResetPwd:
         emit SigModResetPwdRecvReply(aRes, aId, aErr);
+        break;
+    case Mod_Login:
+        emit SigModLoginRecvReply(aRes, aId, aErr);
         break;
     default:
         break;

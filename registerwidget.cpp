@@ -1,13 +1,9 @@
 #include "registerwidget.h"
 #include "ui_registerwidget.h"
 
-#include "global.h"
 #include "util.h"
 #include "httpmgr.h"
 
-#include <QRegularExpression>
-#include <QJsonObject>
-#include <QJsonDocument>
 
 RegisterWidget::RegisterWidget(QWidget *parent) :
     QWidget(parent),
@@ -71,12 +67,10 @@ void RegisterWidget::ResetTips()
     ui->MessageLabel->setText("");
 }
 
-void RegisterWidget::SendVerifyCode()
-{
-    // 请求发送验证码
-
-
-}
+//void RegisterWidget::SendVerifyCode()
+//{
+//    // 请求发送验证码
+//}
 
 void RegisterWidget::ProcessVerifyCodeReply(const QJsonObject& aJson)
 {

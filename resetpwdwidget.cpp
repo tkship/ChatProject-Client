@@ -4,10 +4,6 @@
 #include "httpmgr.h"
 #include "util.h"
 
-#include <QRegularExpression>
-#include <QJsonObject>
-#include <QJsonDocument>
-
 ResetPwdWidget::ResetPwdWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ResetPwdWidget),

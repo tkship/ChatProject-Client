@@ -8,7 +8,6 @@
 #include <QNetworkAccessManager>
 
 
-
 class HttpMgr : public QObject
 {
     Q_OBJECT
@@ -26,6 +25,7 @@ private:
 signals:
     void SigModRegisterRecvReply(const QString& aRes, ReqId aId, ErrorCode aErr);
     void SigModResetPwdRecvReply(const QString& aRes, ReqId aId, ErrorCode aErr);
+    void SigModLoginRecvReply(const QString& aRes, ReqId aId, ErrorCode aErr);
 
 private:
     QNetworkAccessManager mNetMgr;

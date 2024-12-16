@@ -32,6 +32,7 @@ private slots:
     void OnConfirmButtonClick();
     void CheckInput();
     void OnRecvReply(const QString &aRes, ReqId aId, ErrorCode aErr);
+    void OnConnectError();
 
 
 private:

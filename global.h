@@ -9,6 +9,7 @@
 #include <QJsonDocument>
 
 extern QString GateServerPrefix;
+extern QString WebSocketPrefix;
 
 namespace CP
 {

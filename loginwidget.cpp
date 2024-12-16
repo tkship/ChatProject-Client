@@ -2,6 +2,7 @@
 #include "ui_loginwidget.h"
 
 #include "httpmgr.h"
+#include "websocketmgr.h"
 
 #include "util.h"
 
@@ -24,6 +25,9 @@ LoginWidget::LoginWidget(QWidget *parent)
 
     // 登陆事件回调
     connect(&HttpMgr::GetInstance(), &HttpMgr::SigModLoginRecvReply, this, &LoginWidget::OnRecvReply);
+
+    // 连接ChatServer失败回调
+    connect(&WebSocketMgr::GetInstance(), &WebSocketMgr::SigDisConnected, this, &LoginWidget::OnConnectError);
 }
 
 LoginWidget::~LoginWidget()
@@ -62,13 +66,17 @@ void LoginWidget::ProcessLoginReply(const QJsonObject &aJson)
 
     if(aJson["error"].toInt() == ErrorCode::Success)
     {
-        ShowTips("登陆成功");
+        ShowTips("邮箱和密码验证成功，正在登陆...");
         QString host = aJson["host"].toString();
         QString port = aJson["port"].toString();
         QString token = aJson["token"].toString();
         qDebug() << "[host]: " << host << "\n";
         qDebug() << "[port]: " << port << "\n";
         qDebug() << "[token]: " << token << "\n";
+
+        QString chatServerAddress = WebSocketPrefix + host + ":" + port;
+        WebSocketMgr::GetInstance().SetToken(token);
+        WebSocketMgr::GetInstance().Connect(chatServerAddress);
     }
     else if(aJson["error"].toInt() == ErrorCode::MySQL_UserNotMatch)
     {
@@ -102,6 +110,11 @@ void LoginWidget::OnRecvReply(const QString &aRes, ReqId aId, ErrorCode aErr)
     default:
         break;
     }
+}
+
+void LoginWidget::OnConnectError()
+{
+    ShowTips("连接聊天服务器失败，请重试");
 }
 
 

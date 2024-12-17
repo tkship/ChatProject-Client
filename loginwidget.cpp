@@ -28,6 +28,8 @@ LoginWidget::LoginWidget(QWidget *parent)
 
     // 连接ChatServer失败回调
     connect(&WebSocketMgr::GetInstance(), &WebSocketMgr::SigDisConnected, this, &LoginWidget::OnConnectError);
+    // 连接ChatServer成功回调
+    connect(&WebSocketMgr::GetInstance(), &WebSocketMgr::SigConnected, this, &LoginWidget::OnConnected);
 }
 
 LoginWidget::~LoginWidget()
@@ -66,7 +68,6 @@ void LoginWidget::ProcessLoginReply(const QJsonObject &aJson)
 
     if(aJson["error"].toInt() == ErrorCode::Success)
     {
-        ShowTips("邮箱和密码验证成功，正在登陆...");
         QString host = aJson["host"].toString();
         QString port = aJson["port"].toString();
         QString token = aJson["token"].toString();
@@ -115,6 +116,14 @@ void LoginWidget::OnRecvReply(const QString &aRes, ReqId aId, ErrorCode aErr)
 void LoginWidget::OnConnectError()
 {
     ShowTips("连接聊天服务器失败，请重试");
+}
+
+void LoginWidget::OnConnected()
+{
+    ShowTips("聊天服务连接成功，正在登陆...");
+    // 发送token到ChatServer进行验证
+    // 这里是一个请求Chat_Login
+    // 对于ChatServer的回传数据，我们注册回调到websocketMgr即可
 }
 
 

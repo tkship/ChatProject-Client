@@ -33,9 +33,12 @@ private slots:
     void CheckInput();
     void OnRecvReply(const QString &aRes, ReqId aId, ErrorCode aErr);
     void OnConnectError();
+    void OnConnected();
 
 
 private:
     Ui::Widget *ui;
+    std::string mUid;
+    std::string mToken;
 };
 #endif // WIDGET_H

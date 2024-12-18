@@ -31,7 +31,7 @@ ResetPwdWidget::ResetPwdWidget(QWidget *parent) :
     // 注册成功转换界面
     connect(ui->ConfirmButton2, &QPushButton::clicked, this, [this](){
         ClearPages();
-        emit ResetPwdSuccess();
+        emit SigResetPwdSuccess();
     });
     connect(&mTimer, &QTimer::timeout, this, [this](){
         mCountDown--;
@@ -39,7 +39,7 @@ ResetPwdWidget::ResetPwdWidget(QWidget *parent) :
         {
             mTimer.stop();
             ClearPages();
-            emit ResetPwdSuccess();
+            emit SigResetPwdSuccess();
             return;
         }
 

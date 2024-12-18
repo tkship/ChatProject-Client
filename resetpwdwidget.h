@@ -20,7 +20,7 @@ public:
 
 signals:
     void SigCancelButtonClicked();
-    void ResetPwdSuccess();
+    void SigResetPwdSuccess();
 
 private:
     void ProcessVerifyCodeReply(const QJsonObject& aJson);

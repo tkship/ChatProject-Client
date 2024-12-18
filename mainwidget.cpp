@@ -40,14 +40,14 @@ void MainWidget::InitWidget()
 
     // 注册界面按钮点击事件
     connect(mRegisterWidget, &RegisterWidget::SigCancelButtonClicked, this, &MainWidget::OnRegisterCancelButtonClick);
-    connect(mRegisterWidget, &RegisterWidget::UserRegisterSuccess, this, &MainWidget::OnRegisterCancelButtonClick);
+    connect(mRegisterWidget, &RegisterWidget::SigUserRegisterSuccess, this, &MainWidget::OnRegisterCancelButtonClick);
 
     // 重置密码界面按钮点击事件
     connect(mResetPwdWidget, &ResetPwdWidget::SigCancelButtonClicked, this, &MainWidget::OnResetPwdWidgetCancelButtonClick);
-    connect(mResetPwdWidget, &ResetPwdWidget::ResetPwdSuccess, this, &MainWidget::OnResetPwdWidgetCancelButtonClick);
+    connect(mResetPwdWidget, &ResetPwdWidget::SigResetPwdSuccess, this, &MainWidget::OnResetPwdWidgetCancelButtonClick);
 
     // 连接到ChatServer
-    connect(&WebSocketMgr::GetInstance(), &WebSocketMgr::SigConnected, this, &MainWidget::OnChatServerConnected);
+    connect(mLoginWidget, &LoginWidget::SigLoginChatServerSuccess, this, &MainWidget::OnChatServerConnected);
 }
 
 void MainWidget::OnRegisterButtonClick()

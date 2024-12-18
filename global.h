@@ -17,18 +17,24 @@ namespace CP
 // 用来定位模块
 enum Module
 {
-    Mod_Register,
+    Mod_Register = 0,
     Mod_ResetPwd,
     Mod_Login
 };
 
-// 用来定位模块内的具体哪个发送请求
+// Http请求GateServer
 enum ReqId
-{
-    Req_VerifyCode,
+{   
+    Req_VerifyCode = 0,
     Req_Register,
     Req_ResetPwd,
     Req_Login,
+};
+
+// WebSocket请求ChatServer
+enum MsgId
+{
+    Chat_Login = 0,
 };
 
 enum ErrorCode
@@ -41,6 +47,11 @@ enum ErrorCode
     MySQL_Error = 1005,
     MySQL_UserNotExist = 1006,
     MySQL_UserNotMatch = 1007,
+    Json_ParseError = 1008,
+    Server_Failed = 1009, // 加一个笼统的错误码表示服务器某处崩溃了
+
+    Chat_InvalidMsgId = 2001,
+    Chat_InvalidUser = 2002,
 
     NetFailure = 10001,
 

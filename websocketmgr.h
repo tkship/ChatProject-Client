@@ -12,33 +12,37 @@ class WebSocketMgr : public QObject
 {
     Q_OBJECT
 
-    typedef std::function<void()> CallBackFunc;
+    typedef std::function<void(const QJsonObject&)> CallBackFunc;
 public:
     explicit WebSocketMgr(QObject *parent = nullptr);
     ~WebSocketMgr();
 
     static WebSocketMgr& GetInstance();
 
-    void RegisterCallBack(ReqId aId, CallBackFunc aFunc);
+    void RegisterCallBack(MsgId aId, CallBackFunc aFunc);
     void SetToken(const QString& aToken);
+    QString& GetToken();
+    void SetUid(const QString& aUid);
+    QString& GetUid();
 
     void Connect(QUrl aUrl);
     bool Send(const QJsonObject& aJson);
 signals:
     void SigConnected();
     void SigDisConnected();
-    void SigRecvMesFromChatServer(const QByteArray& aMes);
+    void SigRecvMsgFromChatServer(const QByteArray& aMsg);
 //    void SigConnectError();
 
 private slots:
     void OnConnected();
     void OnDisconnected();
 //    void OnError(QAbstractSocket::SocketError);
-    void OnBinaryMessageReceived(const QByteArray& aMes);
+    void OnTextMessageReceived(const QString& aMsg);
 private:
     QWebSocket* mWebSocket;
-    std::unordered_map<ReqId, CallBackFunc> mCallBackMap;
+    std::unordered_map<MsgId, CallBackFunc> mCallBackMap;
     QString mToken;
+    QString mUid;
 };
 
 #endif // WEBSOCKETMGR_H

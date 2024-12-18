@@ -30,6 +30,9 @@ LoginWidget::LoginWidget(QWidget *parent)
     connect(&WebSocketMgr::GetInstance(), &WebSocketMgr::SigDisConnected, this, &LoginWidget::OnConnectError);
     // 连接ChatServer成功回调
     connect(&WebSocketMgr::GetInstance(), &WebSocketMgr::SigConnected, this, &LoginWidget::OnConnected);
+
+    WebSocketMgr::GetInstance().RegisterCallBack(Chat_Login,
+                                                 std::bind(&LoginWidget::ChatServerLoginCallBack, this, std::placeholders::_1));
 }
 
 LoginWidget::~LoginWidget()
@@ -65,18 +68,21 @@ bool LoginWidget::CheckEmail()
 
 void LoginWidget::ProcessLoginReply(const QJsonObject &aJson)
 {
-
     if(aJson["error"].toInt() == ErrorCode::Success)
     {
         QString host = aJson["host"].toString();
         QString port = aJson["port"].toString();
-        QString token = aJson["token"].toString();
+        // json 传入时哪怕是int也应该是转为string，为什么这里用toString转不了呢？
+        mUid = aJson["uid"].toString();
+        mToken = aJson["token"].toString();
         qDebug() << "[host]: " << host << "\n";
         qDebug() << "[port]: " << port << "\n";
-        qDebug() << "[token]: " << token << "\n";
+        qDebug() << "[uid]: " << mUid << "\n";
+        qDebug() << "[token]: " << mToken << "\n";
 
         QString chatServerAddress = WebSocketPrefix + host + ":" + port;
-        WebSocketMgr::GetInstance().SetToken(token);
+        WebSocketMgr::GetInstance().SetToken(mToken);
+        WebSocketMgr::GetInstance().SetUid(mUid);
         WebSocketMgr::GetInstance().Connect(chatServerAddress);
     }
     else if(aJson["error"].toInt() == ErrorCode::MySQL_UserNotMatch)
@@ -84,6 +90,21 @@ void LoginWidget::ProcessLoginReply(const QJsonObject &aJson)
         // 查不到用户数据
         ShowTips("邮箱或密码错误");
     }
+    else if(aJson["error"].toInt() == ErrorCode::GRPC_Failed)
+    {
+        ShowTips("连接服务器失败");
+    }
+}
+
+void LoginWidget::ChatServerLoginCallBack(const QJsonObject& aJson)
+{
+    if(aJson["error"].toInt() == ErrorCode::Success)
+    {
+        emit SigLoginChatServerSuccess();
+        return;
+    }
+
+    ShowTips("登陆失败");
 }
 
 void LoginWidget::OnRecvReply(const QString &aRes, ReqId aId, ErrorCode aErr)
@@ -124,6 +145,15 @@ void LoginWidget::OnConnected()
     // 发送token到ChatServer进行验证
     // 这里是一个请求Chat_Login
     // 对于ChatServer的回传数据，我们注册回调到websocketMgr即可
+    QJsonObject jsonObj;
+    jsonObj["msgId"] = Chat_Login;
+    jsonObj["uid"] = mUid;
+    jsonObj["token"] = mToken;
+
+    qDebug() << "[uid]: " << mUid << "\n";
+    qDebug() << "[token]: " << mToken << "\n";
+
+    WebSocketMgr::GetInstance().Send(jsonObj);
 }
 
 

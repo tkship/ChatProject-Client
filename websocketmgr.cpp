@@ -6,7 +6,7 @@ WebSocketMgr::WebSocketMgr(QObject *parent)
 {
     connect(mWebSocket, &QWebSocket::connected, this, &WebSocketMgr::OnConnected);
     connect(mWebSocket, &QWebSocket::disconnected, this, &WebSocketMgr::OnDisconnected);
-    connect(mWebSocket, &QWebSocket::binaryMessageReceived, this, &WebSocketMgr::OnBinaryMessageReceived);
+    connect(mWebSocket, &QWebSocket::textMessageReceived, this, &WebSocketMgr::OnTextMessageReceived);
 
 //    connect(mWebSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::error), this, &WebSocketMgr::OnError);
 
@@ -23,7 +23,7 @@ WebSocketMgr &WebSocketMgr::GetInstance()
     return self;
 }
 
-void WebSocketMgr::RegisterCallBack(ReqId aId, CallBackFunc aFunc)
+void WebSocketMgr::RegisterCallBack(MsgId aId, CallBackFunc aFunc)
 {
     if(mCallBackMap.find(aId) != mCallBackMap.end())
     {
@@ -40,6 +40,21 @@ void WebSocketMgr::SetToken(const QString &aToken)
     mToken = aToken;
 }
 
+QString &WebSocketMgr::GetToken()
+{
+    return mToken;
+}
+
+void WebSocketMgr::SetUid(const QString &aUid)
+{
+    mUid = aUid;
+}
+
+QString &WebSocketMgr::GetUid()
+{
+    return mUid;
+}
+
 void WebSocketMgr::Connect(QUrl aUrl)
 {
     mWebSocket->open(aUrl);
@@ -53,7 +68,7 @@ bool WebSocketMgr::Send(const QJsonObject& aJson)
     }
 
     QByteArray data = QJsonDocument(aJson).toJson();
-    mWebSocket->sendBinaryMessage(data);
+    mWebSocket->sendTextMessage(data);
     return true;
 }
 
@@ -78,10 +93,10 @@ void WebSocketMgr::OnDisconnected()
 //    emit SigConnectError();
 //}
 
-void WebSocketMgr::OnBinaryMessageReceived(const QByteArray& aMes)
+void WebSocketMgr::OnTextMessageReceived(const QString& aMsg)
 {
     // 收到消息  -- 根据id注册回调，在这里调用回调
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(QString(aMes).toUtf8());
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(aMsg.toUtf8());
     if(jsonDoc.isNull() || !jsonDoc.isObject())
     {
         qDebug("回传Json格式出错");
@@ -90,6 +105,6 @@ void WebSocketMgr::OnBinaryMessageReceived(const QByteArray& aMes)
 
     QJsonObject jsonObj = jsonDoc.object();
 
-    ReqId id = (ReqId)jsonObj["ReqId"].toInt();
-    mCallBackMap[id]();
+    MsgId id = (MsgId)jsonObj["msgId"].toInt();
+    mCallBackMap[id](jsonObj);
 }

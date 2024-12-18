@@ -30,7 +30,7 @@ private:
 
 signals:
     void SigCancelButtonClicked();
-    void UserRegisterSuccess();
+    void SigUserRegisterSuccess();
 
 private slots:
     void OnVerifyCodeButtonclick();

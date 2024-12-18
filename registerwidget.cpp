@@ -35,7 +35,7 @@ RegisterWidget::RegisterWidget(QWidget *parent) :
     // 注册成功转换界面
     connect(ui->ConfirmButton2, &QPushButton::clicked, this, [this](){
         ClearPages();
-        emit UserRegisterSuccess();
+        emit SigUserRegisterSuccess();
     });
     connect(&mTimer, &QTimer::timeout, this, [this](){
         mCountDown--;
@@ -43,7 +43,7 @@ RegisterWidget::RegisterWidget(QWidget *parent) :
         {
             mTimer.stop();
             ClearPages();
-            emit UserRegisterSuccess();
+            emit SigUserRegisterSuccess();
             return;
         }
 

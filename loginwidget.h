@@ -20,6 +20,7 @@ public:
 signals:
     void SigRegisterButtonClicked();
     void SigResetPwdButtonClicked();
+    void SigLoginChatServerSuccess();
 
 private:
     void ShowTips(const QString& aString);
@@ -27,6 +28,7 @@ private:
     bool CheckEmail();
 
     void ProcessLoginReply(const QJsonObject& aJson);
+    void ChatServerLoginCallBack(const QJsonObject& aJson);
 
 private slots:
     void OnConfirmButtonClick();
@@ -38,7 +40,7 @@ private slots:
 
 private:
     Ui::Widget *ui;
-    std::string mUid;
-    std::string mToken;
+    QString mUid;
+    QString mToken;
 };
 #endif // WIDGET_H

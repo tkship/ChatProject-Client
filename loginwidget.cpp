@@ -73,6 +73,8 @@ void LoginWidget::ProcessLoginReply(const QJsonObject &aJson)
         QString host = aJson["host"].toString();
         QString port = aJson["port"].toString();
         // json 传入时哪怕是int也应该是转为string，为什么这里用toString转不了呢？
+        // 大概是QJsonObject内部自己把数字处理了"uid":"20"和"uid":20是不一样的
+        // 所以用json也要保证收发端对数据类型的一致性
         mUid = aJson["uid"].toString();
         mToken = aJson["token"].toString();
         qDebug() << "[host]: " << host << "\n";

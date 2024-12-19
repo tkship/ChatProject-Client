@@ -17,8 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     chatwidget.cpp \
+    clickedbutton.cpp \
     global.cpp \
     httpmgr.cpp \
+    locallineedit.cpp \
     loginwidget.cpp \
     main.cpp \
     mainwidget.cpp \
@@ -30,8 +32,10 @@ SOURCES += \
 
 HEADERS += \
     chatwidget.h \
+    clickedbutton.h \
     global.h \
     httpmgr.h \
+    locallineedit.h \
     loginwidget.h \
     mainwidget.h \
     registerwidget.h \
@@ -69,4 +73,5 @@ RESOURCES += \
     rc.qrc
 
 DISTFILES += \
-    config.ini
+    config.ini \
+    qss/style.qss

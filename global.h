@@ -3,6 +3,9 @@
 
 #include <QString>
 #include <QDir>
+#include <QWidget>
+#include <QStyle>
+//#include <QCursor>
 
 #include <QRegularExpression>
 #include <QJsonObject>
@@ -10,6 +13,8 @@
 
 extern QString GateServerPrefix;
 extern QString WebSocketPrefix;
+
+void RePolish(QWidget* aSelf);
 
 namespace CP
 {

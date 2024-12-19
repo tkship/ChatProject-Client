@@ -11,7 +11,11 @@ MainWidget::MainWidget(QWidget *parent)
 {
     InitWidget();
 
-    mLoginWidget->show();
+//    mLoginWidget->show();
+
+    // test
+    mChatWidget = new ChatWidget;
+    mChatWidget->show();
 }
 
 MainWidget::~MainWidget()

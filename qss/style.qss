@@ -1,0 +1,12 @@
+#AddButton[state='normal']
+{
+    border-image: url(:/res/add_friend_normal.png);
+}
+#AddButton[state='hover']
+{
+    border-image: url(:/res/add_friend_hover.png);
+}
+#AddButton[state='press']
+{
+    border-image: url(:/res/add_friend_hover.png);
+}

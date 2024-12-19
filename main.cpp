@@ -4,11 +4,23 @@
 
 #include <QApplication>
 #include <QSettings>
-//#include <QDebug>
+#include <QDebug>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWidget w;
+
+    QFile qss(":/qss/style.qss");
+    if(qss.open(QFile::ReadOnly))
+    {
+        QString style = QLatin1String(qss.readAll());
+        a.setStyleSheet(style);
+        qss.close();
+    }
+    else
+    {
+        qDebug() << "加载qss文件出错";
+    }
 
     QIcon icon(":/res/chat.ico"); // 使用资源文件路径
     a.setWindowIcon(icon);

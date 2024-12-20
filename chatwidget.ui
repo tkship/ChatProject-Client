@@ -95,7 +95,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="SearchLineEdit" name="lineEdit"/>
        </item>
        <item>
         <widget class="ClickedButton" name="AddButton">
@@ -131,7 +131,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="widget_3" native="true">
+    <widget class="ChatList" name="widget_3" native="true">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -186,6 +186,17 @@
    <class>ClickedButton</class>
    <extends>QPushButton</extends>
    <header>clickedbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SearchLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>searchlineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ChatList</class>
+   <extends>QWidget</extends>
+   <header>chatlist.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

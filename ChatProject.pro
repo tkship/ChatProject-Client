@@ -16,30 +16,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chatlist.cpp \
     chatwidget.cpp \
     clickedbutton.cpp \
     global.cpp \
     httpmgr.cpp \
-    locallineedit.cpp \
     loginwidget.cpp \
     main.cpp \
     mainwidget.cpp \
     registerwidget.cpp \
     resetpwdwidget.cpp \
+    searchlineedit.cpp \
     timerbtn.cpp \
     util.cpp \
     websocketmgr.cpp
 
 HEADERS += \
+    chatlist.h \
     chatwidget.h \
     clickedbutton.h \
     global.h \
     httpmgr.h \
-    locallineedit.h \
     loginwidget.h \
     mainwidget.h \
     registerwidget.h \
     resetpwdwidget.h \
+    searchlineedit.h \
     timerbtn.h \
     util.h \
     websocketmgr.h

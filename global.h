@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QWidget>
 #include <QStyle>
+#include <QAction>
 //#include <QCursor>
 
 #include <QRegularExpression>

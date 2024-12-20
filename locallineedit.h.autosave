@@ -6,7 +6,7 @@
 class LocalLineEdit : public QLineEdit
 {
 public:
-    LocalLineEdit();
+    LocalLineEdit(QWidget *parent = nullptr);
     ~LocalLineEdit();
 
 protected:

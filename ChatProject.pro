@@ -21,6 +21,7 @@ SOURCES += \
     clickedbutton.cpp \
     global.cpp \
     httpmgr.cpp \
+    listitem.cpp \
     loginwidget.cpp \
     main.cpp \
     mainwidget.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     clickedbutton.h \
     global.h \
     httpmgr.h \
+    listitem.h \
     loginwidget.h \
     mainwidget.h \
     registerwidget.h \

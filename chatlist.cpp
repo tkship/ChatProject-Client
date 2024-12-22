@@ -1,13 +1,27 @@
 #include "chatlist.h"
+#include "chatlistitem.h"
 
 #include <QWheelEvent>
 #include <QScrollBar>
+
 
 ChatList::ChatList(QWidget *parent)
     : QListWidget(parent)
 {
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // test
+    for(int i = 0; i < 10; ++i)
+    {
+        ChatListItem* item = new ChatListItem;
+        QListWidgetItem* qItem = new QListWidgetItem;
+        qItem->setSizeHint({211, 70});
+        addItem(qItem);
+        setItemWidget(qItem, item);
+    }
+
+
 }
 
 ChatList::~ChatList()

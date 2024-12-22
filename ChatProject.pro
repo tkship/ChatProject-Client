@@ -17,11 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     chatlist.cpp \
+    chatlistitem.cpp \
     chatwidget.cpp \
     clickedbutton.cpp \
+    contactlistitem.cpp \
     global.cpp \
     httpmgr.cpp \
-    listitem.cpp \
+    listspacingitem.cpp \
     loginwidget.cpp \
     main.cpp \
     mainwidget.cpp \
@@ -34,11 +36,13 @@ SOURCES += \
 
 HEADERS += \
     chatlist.h \
+    chatlistitem.h \
     chatwidget.h \
     clickedbutton.h \
+    contactlistitem.h \
     global.h \
     httpmgr.h \
-    listitem.h \
+    listspacingitem.h \
     loginwidget.h \
     mainwidget.h \
     registerwidget.h \
@@ -49,7 +53,10 @@ HEADERS += \
     websocketmgr.h
 
 FORMS += \
+    chatlistitem.ui \
     chatwidget.ui \
+    contactlistitem.ui \
+    listspacingitem.ui \
     loginwidget.ui \
     registerwidget.ui \
     resetpwdwidget.ui

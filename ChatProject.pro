@@ -16,8 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    chatlist.cpp \
     chatlistitem.cpp \
+    chatlistwidget.cpp \
     chatwidget.cpp \
     clickedbutton.cpp \
     contactlistitem.cpp \
@@ -35,8 +35,8 @@ SOURCES += \
     websocketmgr.cpp
 
 HEADERS += \
-    chatlist.h \
     chatlistitem.h \
+    chatlistwidget.h \
     chatwidget.h \
     clickedbutton.h \
     contactlistitem.h \

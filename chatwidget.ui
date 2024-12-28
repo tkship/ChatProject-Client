@@ -75,7 +75,7 @@
     <number>0</number>
    </property>
    <widget class="QWidget" name="page">
-    <widget class="QWidget" name="widget_2" native="true">
+    <widget class="QWidget" name="SearchWidget" native="true">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -131,7 +131,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="ChatList" name="widget_3" native="true">
+    <widget class="ChatListWidget" name="ChatList" native="true">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -186,9 +186,9 @@
    <header>searchlineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>ChatList</class>
+   <class>ChatListWidget</class>
    <extends>QWidget</extends>
-   <header>chatlist.h</header>
+   <header>chatlistwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

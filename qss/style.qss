@@ -10,3 +10,14 @@
 {
     border-image: url(:/res/add_friend_hover.png);
 }
+
+#ChatList
+{
+    background-color: #fffafa;
+    border: none;
+}
+
+#SearchWidget
+{
+    background-color: #f0f0f0;
+}

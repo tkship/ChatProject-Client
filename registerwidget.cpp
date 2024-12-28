@@ -135,7 +135,7 @@ void RegisterWidget::OnVerifyCodeButtonclick()
     // 发送验证码
     QJsonObject jsonObj;
     jsonObj["email"] = ui->MailLine->text();
-    HttpMgr::GetInstance().SendPostRequest(QUrl(GateServerPrefix + "GetVarifyCode"), jsonObj, Mod_Register, Req_VerifyCode);
+    HttpMgr::GetInstance().SendPostRequest(QUrl(GateServerPrefix + "GetVerifyCode"), jsonObj, Mod_Register, Req_VerifyCode);
 
 }
 

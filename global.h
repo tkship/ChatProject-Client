@@ -1,6 +1,7 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+#include <QDebug>
 #include <QString>
 #include <QDir>
 #include <QWidget>

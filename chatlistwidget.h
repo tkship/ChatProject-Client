@@ -3,12 +3,12 @@
 
 #include <QListWidget>
 
-class ChatList : public QListWidget
+class ChatListWidget : public QListWidget
 {
     Q_OBJECT
 public:
-    ChatList(QWidget *parent = nullptr);
-    ~ChatList();
+    ChatListWidget(QWidget *parent = nullptr);
+    ~ChatListWidget();
 
 protected:
     virtual void enterEvent(QEvent* event) override;

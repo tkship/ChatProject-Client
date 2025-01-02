@@ -24,3 +24,18 @@ ChatListItem::~ChatListItem()
 {
     delete ui;
 }
+
+void ChatListItem::UpdateInfo(const QString &aContactName, const QString &aRecentMsg, const QPixmap &aUserIcon)
+{
+    mContactName = aContactName;
+    mRecentMsg = aRecentMsg;
+    mUserIcon = aUserIcon;
+
+    // 缩放图片以适应QLabel的大小
+    QPixmap scaledPixmap = mUserIcon.scaled(ui->IconLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    // 将缩放后的图片设置到QLabel中
+    ui->IconLabel->setPixmap(scaledPixmap);
+
+    ui->Contact->setText(mContactName);
+    ui->RecentMsg->setText(mRecentMsg);
+}

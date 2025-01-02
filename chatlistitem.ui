@@ -41,7 +41,7 @@
     <number>0</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="Contact">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -51,10 +51,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>联系人 时间</string>
+    <string>联系人</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="RecentMsg">
    <property name="geometry">
     <rect>
      <x>70</x>

@@ -15,8 +15,13 @@ public:
     explicit ChatListItem(QWidget *parent = nullptr);
     ~ChatListItem();
 
+    void UpdateInfo(const QString& aContactName, const QString& aRecentMsg, const QPixmap& aUserIcon);
 private:
     Ui::ChatListItem *ui;
+
+    QString mContactName;
+    QPixmap mUserIcon;
+    QString mRecentMsg;
 };
 
 #endif // CHATLISTITEM_H

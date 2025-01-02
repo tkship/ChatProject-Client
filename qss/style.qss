@@ -11,6 +11,32 @@
     border-image: url(:/res/add_friend_hover.png);
 }
 
+#SwitchChatButton[state='normal']
+{
+    border-image: url(:/res/chat_icon.png);
+}
+#SwitchChatButton[state='hover']
+{
+    border-image: url(:/res/chat_icon_hover.png);
+}
+#SwitchChatButton[state='press']
+{
+    border-image: url(:/res/chat_icon_press.png);
+}
+
+#SwitchContactButton[state='normal']
+{
+    border-image: url(:/res/contact_list.png);
+}
+#SwitchContactButton[state='hover']
+{
+    border-image: url(:/res/contact_list_hover.png);
+}
+#SwitchContactButton[state='press']
+{
+    border-image: url(:/res/contact_list_press.png);
+}
+
 #ChatList
 {
     background-color: #fffafa;
@@ -20,4 +46,14 @@
 #SearchWidget
 {
     background-color: #f0f0f0;
+}
+
+#SideWidget
+{
+    background-color: #3e3c3b;
+}
+
+#SearchLine
+{
+    border: 2px solid #d4d1d1;
 }

@@ -22,6 +22,7 @@ ChatListWidget::ChatListWidget(QWidget *parent)
         addItem(qItem);
         setItemWidget(qItem, item);
     }
+
 }
 
 ChatListWidget::~ChatListWidget()
